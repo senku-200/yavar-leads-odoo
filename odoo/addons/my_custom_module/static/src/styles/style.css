@@ -1,0 +1,240 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color: #333;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    min-height:80px;
+    border-bottom: 1px solid #EEE;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content:space-between;
+    padding: 0px 50px;
+    align-items: center;
+    flex-wrap: wrap;
+    z-index: 2;
+}
+
+header #logo {
+    width: 100px;
+    height: 30px;
+    margin-left: 20px;
+}
+
+
+#partners_title {
+    font-size: 28px;
+    margin: 0;
+    font-weight: bolder;
+    text-transform: capitalize;
+    color: #232c61;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto 50px;
+    padding: 0 20px;
+}
+
+.text-break {
+    word-wrap: break-word;
+}
+
+.table {
+    margin-bottom: 1rem;
+    background-color: #fff;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table td, .table th {
+    padding: 8px;
+}
+
+ 
+td {
+    max-width: 20px;
+    border: 1px solid #ddd;
+    line-height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-height: 100px;
+}
+
+#body-tr:hover {
+    background-color: #f1f1f1;
+}
+th,td{
+    text-align: center;
+    align-content: center;
+    font-size: 13px;
+}
+th{
+    padding: 20px !important;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#partners-table-wrapper table thead tr th{
+    color:#232D61;
+}
+
+@media (min-width: 1440px) {
+    .container {
+        width: 100%;
+        max-width: 2560px;
+        margin: 50 auto 50px;
+        padding: 0 20px;
+    }
+}
+@media (max-width: 768px) {
+    header {
+        padding: 10px 20px;
+    }
+    header button{
+        transform: scale(.9);
+    }
+    #partners_title {
+        font-size: 24px;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        padding: 10px 0px;
+        min-height: auto;
+    }
+    .container_fluid_100{
+        margin: 20px auto;
+    }
+
+    header #logo {
+        max-width: 80px;
+        margin-left: 0;
+    }
+
+    header .text-center {
+        font-size: 10px;
+        font-weight: 900;
+    }
+
+    #partners_title {
+        font-size: 16px;
+        font-weight: 700;
+    }
+    header button{
+        transform: scale(.7,.7);
+    }
+    table thead tr th{
+        font-size: 14px;
+        padding: 0px;
+    }
+    td{
+        padding: 5px;
+    }
+}
+
+
+
+
+/* Tooltip styling for desktop */
+td {
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: .10s ease-in-out;
+}
+
+td:hover::after {
+    content: attr(title);
+    position: absolute;
+    white-space: pre;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 10;
+    left: 0;
+    top: 100%;
+    width: max-content;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Optional: Adjust tooltip styles for mobile view */
+@media (max-width: 768px) {
+    td{
+        user-select: none;
+    }
+    .tooltip-mobile {
+        font-size: 8px;
+        line-height: .8rem;
+        position: relative;
+        background: rgba(0, 0, 0, 0.75);
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        z-index: 10;
+        max-width: 100%;
+        word-wrap: break-word;
+        white-space: normal;
+        transition: .5s ease-in-out;
+    }
+}
+
+
+/*pagnation*/
+.page-link{
+    color: #000;
+}
+.page-link:hover{
+    color: #000;
+}
+.page-item{
+    background-color: white;
+}
+.active>.page-link{
+    background-color: #000;
+    border-color: #000;
+}
+.active>.page-link:hover{
+    color: white;
+}
+.disabled>.page-item{
+    border: none;
+    box-shadow: 0px;
+    transition: none;
+}
+.page-link:focus {
+    box-shadow: none;
+}

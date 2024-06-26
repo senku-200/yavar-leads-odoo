@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_user_form" model="ir.ui.view">
+        <field name="name">user.form</field>
+        <field name="model">referal_client_module.referal_client_module</field>
+        <field name="arch" type="xml">
+            <form string="User Form">
+                <group>
+                    <field name="name"/>
+                    <field name="email"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_user_tree" model="ir.ui.view">
+        <field name="name">user.tree</field>
+        <field name="model">referal_client_module.referal_client_module</field>
+        <field name="arch" type="xml">
+            <tree string="User List">
+                <field name="name"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_user" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="res_model">referal_client_module.referal_client_module</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_custom_user" name="User Management" sequence="1"/>
+    <menuitem id="menu_user" name="Users" parent="menu_custom_user" action="action_user"/>
+
+    <template id="partners_list_template" name="User List">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Users</h1>
+                <form action="/partners/create" method="post">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" class="form-control" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" required="required"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create User</button>
+                </form>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="users" t-as="user">
+                            <tr>
+                                <td><t t-esc="user.name"/></td>
+                                <td><t t-esc="user.email"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,109 @@
+<odoo>
+    <template id='partners_list_display'>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" type="text/css" href="/my_custom_module/static/src/styles/style.css"/>
+        <t t-call="web.layout">
+            <header>
+                <a href='/'><img src="/product_yavar/static/src/assets/Yavar-Logo-AI-1.svg" alt="Yavar Logo" id="logo"/></a>
+                <h2 class='header-title' id='partners_title'>Partners List</h2>
+                <a href="/partners/register" id="my_lead_red">
+                    <button type="button" class="btn btn-dark">New Lead</button>
+                </a>
+            </header>
+            <div class='container container_fluid_100'>
+                <t t-if="isTrue">
+                    <div id="partners-table-wrapper" class="table-responsive">
+                        <table id="partners-table" class="table table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>S.NO</th>
+                                    <th>Company Name</th>
+                                    <th>Company Industry</th>
+                                    <th>Project Name</th>
+                                    <th>Project Description</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Country</th>
+                                    <th>Job Level</th>
+                                    <th>Job Function</th>
+                                    <th>Product Cloud Interest</th>
+                                    <th>Is this an RFP?</th>
+                                    <th>Budget for Project</th>
+                                    <t t-if='is_admin'>
+                                        <th>Partner First Name</th>
+                                        <th>Partner Last Name</th>
+                                        <th>Partner Company Name</th>
+                                        <th>Partner Email</th>
+                                        <th>Partner Phone Number</th>
+                                    </t>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set='counter' t-value='0'/>
+                                <t t-foreach="docs" t-as="record">
+                                    <t t-set='counter' t-value='counter+1' />
+                                    <tr id='body-tr'>
+                                        <td t-esc='counter'/>
+                                        <td t-att-title="record.company_name"><t t-esc="record.company_name"/></td>
+                                        <td t-att-title="record.company_industry"><t t-esc="record.company_industry"/></td>
+                                        <td t-att-title="record.project_name"><t t-esc="record.project_name"/></td>
+                                        <td t-att-title="record.project_description" class="text-break"><t t-esc="record.project_description"/></td>
+                                        <td t-att-title="record.first_name"><t t-esc="record.first_name"/></td>
+                                        <td t-att-title="record.last_name"><t t-esc="record.last_name"/></td>
+                                        <td t-att-title="record.email"><t t-esc="record.email"/></td>
+                                        <td t-att-title="record.phone_number"><t t-esc="record.phone_number"/></td>
+                                        <td t-att-title="record.country.name"><t t-esc="record.country.name"/></td>
+                                        <td t-att-title="record.job_level"><t t-esc="record.job_level"/></td>
+                                        <td t-att-title="record.job_function"><t t-esc="record.job_function"/></td>
+                                        <td t-att-title="record.product_cloud_interest"><t t-esc="record.product_cloud_interest"/></td>
+                                        <td t-att-title="record.is_this_an_RFP"><t t-esc="record.is_this_an_RFP"/></td>
+                                        <td t-att-title="record.budget_project"><t t-esc="record.budget_project"/></td>
+                                        <t t-if='is_admin'>
+                                            <td t-att-title="(record.partner_id.name or '').split(' ')[0]">
+                                                <t t-esc="(record.partner_id.name or '').split(' ')[0]"/>
+                                            </td>
+                                            <td t-att-title="(record.partner_id.name or '').split(' ')[1] if len((record.partner_id.name or '').split(' ')) > 1 else ''">
+                                                <t t-esc="(record.partner_id.name or '').split(' ')[1] if len((record.partner_id.name or '').split(' ')) > 1 else ''"/>
+                                            </td>
+                                            <td t-att-title="record.partner_id.company_name or ''">
+                                                <t t-esc="record.partner_id.parent_id.name or ''"/>
+                                            </td>
+                                            <td t-att-title="record.partner_id.email or ''">
+                                                <t t-esc="record.partner_id.email or ''"/>
+                                            </td>
+                                            <td t-att-title="record.partner_id.phone or ''">
+                                                <t t-esc="record.partner_id.phone or ''"/>
+                                            </td>
+                                        </t>
+                                        <td><i class="fa-regular fa-eye"></i></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4">
+                        <ul id="pagination" class="pagination">
+                        </ul>
+                    </nav>
+                </t>
+                <t t-else="">
+                    <div id="no_rec_con" class="text-center my-4">
+                        <p id='no_record_p' class="mb-4" style="color:red !important;">No Records Found</p>
+                        <a href="/partners/register" id='my_lead_red' class="btn_bottom">
+                            <button type="button" class="btn btn-dark">New Lead</button>
+                        </a>
+                    </div>
+                </t>
+            </div>
+            <script type="text/javascript" src="/my_custom_module/static/src/script/pagination.js"></script>
+            <script type="text/javascript" src="/my_custom_module/static/src/script/tooltip.js"></script>
+        </t>
+        <script type='text/javascript' src='/my_custom_module/static/src/script/popup.js'></script>
+    </template>
+</odoo>

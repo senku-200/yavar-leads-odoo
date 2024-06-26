@@ -1,0 +1,19 @@
+<odoo>
+    <template id="custom_login_layout" inherit_id="web.login_layout">
+        <xpath expr="//div[@class='container py-5']" position="replace">
+            <div class="container py-5 custom-login-container">
+                <div class="card border-0 mx-auto bg-100 custom-login-card">
+                    <div class="card-body">
+                        <div class="text-center pb-3 border-bottom">
+                            <img src="/custom_login/static/src/img/yavar.png" alt="Custom Logo" class="custom-logo"/>#
+                        </div>
+                        <t t-out="0"/>
+                        <div class="text-center small mt-4 pt-3 border-top">
+                            <a href="https://www.custom-url.com" target="_blank">Powered by <span>Custom Company</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

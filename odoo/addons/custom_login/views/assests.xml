@@ -1,0 +1,10 @@
+<odoo>
+    <template id="custom_web_layout" inherit_id="web.layout">
+        <xpath expr="//head/title" position="replace">
+            <title>Yavar Products</title>
+        </xpath>
+        <xpath expr="//head/link[@rel='shortcut icon']" position="replace">
+            <link rel="shortcut icon" href="/product_yavar/static/src/assets/title_svg.svg" type="image/svg+xml"/>
+        </xpath>
+    </template>
+</odoo>

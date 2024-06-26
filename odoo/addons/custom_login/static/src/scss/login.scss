@@ -1,0 +1,36 @@
+.custom_login_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f7f8fa;
+
+    .o_login_left {
+        flex: 1;
+        padding: 20px;
+        text-align: center;
+
+        .custom_logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #777;
+        }
+    }
+
+    .o_login_right {
+        flex: 1;
+        background: white;
+        padding: 40px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 10px;
+    }
+}

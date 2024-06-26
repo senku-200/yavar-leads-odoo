@@ -1,0 +1,64 @@
+<template id="referal_view_template" name="Survey Form">
+    <t t-call="website.layout">
+        <div class="container s_website_form">
+            <h3>Survey Form</h3>
+            <t t-if="submitted">
+                <h3 class="alert alert-success mt16 mb16">
+                    <i class="fa fa-thumbs-up"/>
+                    Survey submitted successfully
+                </h3>
+                <a href="/survey_form">Submit another survey</a>
+            </t>
+            <t t-else="">
+                <div class="row">
+                    <div class="col-6">
+                        <form id="form_survey_form"
+                              action="/survey_form" method="POST">
+                            <input type="hidden" name="csrf_token"
+                                 t-att-value="request.csrf_token()"/>
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <div class="form-group col-12">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control"
+                                           name="name" placeholder="Enter your name"
+                                           required="required"/>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control"
+                                           name="email" placeholder="Enter your mail-id"
+                                           required="required"/>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="phone">Phone</label>
+                                    <input type="number" class="form-control"
+                                           name="phone" placeholder="Enter your name"
+                                           required="required"/>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="dob">DOB</label>
+                                    <input type="date" class="form-control"
+                                           name="dob" placeholder="dd/mm/yyyy"/>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="qualification">Qualification</label>
+                                    <select class="form-control" name="qualification">
+                                        <option value="">Select</option>
+                                        <option value="pg">Post Graduation</option>
+                                        <option value="ug">Graduation</option>
+                                        <option value="higher_secondary">Higher Secondary</option>
+                                        <option value="secondary">Secondary</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-12">
+                                    <input type="submit" class="btn btn-primary"
+                                           value="Submit"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</template>

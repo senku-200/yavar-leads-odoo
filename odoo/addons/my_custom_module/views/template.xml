@@ -1,0 +1,171 @@
+    <odoo>
+        <template id='partners_list_template'>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+            <link rel="stylesheet" href="/my_custom_module/static/src/styles/template.css"/>
+            <link rel="icon" href="/my_custom_module/static/src/assets/title_svg.svg" type="image/icon type"/>
+
+            <title>Yavar Products</title>
+            <t t-call="web.layout">
+                <header>
+                    <a href='/'><img src="/product_yavar/static/src/assets/Yavar-Logo-AI-1.svg" alt="Yavar Logo" id="logo"/></a>
+                    <h1 class="h3 text-center">Lead Deal Registration</h1>
+                    <a href="/partners/list" id="my_lead_red">
+                        <button type="button" class="btn btn-dark">Leads</button>
+                    </a>
+                </header>
+                <div class='container'>
+                    <form action="/partners/create" method="post">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <!-- row_1 -->
+                        <div id="row_1" class='fields_wrapper'>
+                            <div class="form-grp">
+                                <label for="company_name">Company Name<sup style="color:red;">*</sup></label>
+                                <input type="text" name="company_name" class="form-input-field" required="required"/>
+                            </div>
+                            <div class="form-grp">
+                                <label for="company_industry">Company Industry<sup style="color:red;">*</sup></label>
+                                <select id="company_industry" name="company_industry" required="required">
+                                    <option value="">Select Industry</option>
+                                    <option value="IT">Information Technology</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="Manufacturing">Manufacturing</option>
+                                    <option value="Retail">Retail</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Telecommunications">Telecommunications</option>
+                                    <option value="Hospitality">Hospitality</option>
+                                    <option value="Construction">Construction</option>
+                                    <option value="Media">Media</option>
+                                    <option value="Automotive">Automotive</option>
+                                    <option value="Consulting">Consulting</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-grp">
+                                <label for="project_name">Project Name<sup style="color:red;">*</sup></label>
+                                <input type="text" name="project_name" class="form-input-field" required="required"/>
+                            </div>
+                        </div>
+                        <!-- row_2 -->
+                        <div class="fields_wrapper">
+                            <div class="form-grp row_2">
+                                <label for="project_description">Project Description<sup style="color:red;">*</sup></label>
+                                <textarea name="project_description" class="form-input-field" required="required"></textarea>
+                            </div>
+                        </div>
+                        <!-- row_3 -->
+                        <div id="row_3" class='fields_wrapper'>
+                            <div class="form-grp">
+                                <label for="first_name">First Name<sup style="color:red;">*</sup></label>
+                                <input type="text" name="first_name" class="form-input-field first-name" required="required"  pattern="[A-Za-z]{2,}"/>
+                            </div>
+                            <div class="form-grp">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" name="last_name" class="form-input-field" pattern="[A-Za-z]+"/>
+                            </div>
+                            <div class="form-grp">
+                                <label for="email">Email<sup style="color:red;">*</sup></label>
+                                <input type="email" name="email" class="form-input-field" required="required"/>
+                            </div>
+                        </div>
+                        <!-- row_4 -->
+                        <div id="row_4" class='fields_wrapper'>
+                            <div class="form-grp">
+                                <label for="phone_number">Phone Number<sup style="color:red;">*</sup></label>
+                                <input type="text" name="phone_number" class="form-input-field" required="required" pattern="\d{10,15}"/>
+                            </div>
+                            <div class="form-grp">
+                                <label for="country">Country<sup style="color:red;">*</sup></label>
+                                <select id='country' name='country' required="required">
+                                    <option value="">Select Country</option>
+                                    <t t-foreach='countries' t-as='country'>
+                                        <option t-att-value='country.id'><t t-esc="country.name"/></option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="form-grp">
+                                <label for="job_level">Job Level</label>
+                                <select id="job_level" name="job_level" class="form-input-field">
+                                    <option value="">Select Job Level</option>
+                                    <option value="Intern">Intern</option>
+                                    <option value="Entry Level">Entry Level</option>
+                                    <option value="Associate">Associate</option>
+                                    <option value="Mid-Senior Level">Mid-Senior Level</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Senior Manager">Senior Manager</option>
+                                    <option value="Director">Director</option>
+                                    <option value="Vice President">Vice President</option>
+                                    <option value="Executive Vice President">Executive Vice President</option>
+                                    <option value="C-Level Executive">C-Level Executive</option>
+                                    <option value="President">President</option>
+                                    <option value="Owner">Owner</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- row_5 -->
+                        <div class="fields_wrapper">
+                            <div class="form-grp">
+                                <label for="job_function">Job Function</label>
+                                <select id="job_function" name="job_function" class="form-input-field">
+                                        <option value="">Select Job Function</option>
+                                        <option value="Administration">Administration</option>
+                                        <option value="Business Development">Business Development</option>
+                                        <option value="Customer Service">Customer Service</option>
+                                        <option value="Engineering">Engineering</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Human Resources">Human Resources</option>
+                                        <option value="Information Technology">Information Technology</option>
+                                        <option value="Legal">Legal</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Operations">Operations</option>
+                                        <option value="Product Management">Product Management</option>
+                                        <option value="Project Management">Project Management</option>
+                                        <option value="Public Relations">Public Relations</option>
+                                        <option value="Quality Assurance">Quality Assurance</option>
+                                        <option value="Research and Development">Research and Development</option>
+                                        <option value="Sales">Sales</option>
+                                        <option value="Supply Chain Management">Supply Chain Management</option>
+                                        <option value="Training and Development">Training and Development</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <!-- row_6 -->
+                        <div id="row_6" class='fields_wrapper'>
+                            <div class="form-grp">
+                                <label for="product_cloud_interest">Product Cloud Interest</label>
+                                <select name="product_cloud_interest" class="form-input-field custom-select">
+                                    <option value="">-None-</option>
+                                    <option value="drupal Cloud">Drupal Cloud</option>
+                                    <option value="marketing cloud">Marketing Cloud</option>
+                                    <option value="DXP">DXP</option>
+                                </select>
+                            </div>
+                            <div class="form-grp">
+                                <label for="is_this_an_RFP">Is this an RFP?</label>
+                                <select name="is_this_an_RFP" class="form-input-field custom-select">
+                                    <option value="">-None-</option>
+                                    <option value="yes">YES</option>
+                                    <option value="no">NO</option>
+                                </select>
+                            </div>
+                            <div class="form-grp">
+                                <label for="budget_project">Budget for Project</label>
+                                <select name="budget_project" class="form-input-field custom-select">
+                                    <option value="">-None-</option>
+                                    <option value="yes">YES</option>
+                                    <option value="no">NO</option>
+                                    <option value="exploring">Just Exploring</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- row_7 -->
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                    </form>
+                </div>
+                <script type="text/javascript" src="/my_custom_module/static/src/script/template.js"></script>
+            </t>
+        </template>
+    </odoo>

@@ -1,0 +1,13 @@
+<record id="referal_form_tree" model="ir.ui.view">
+    <field name="name">referal.form.view.tree</field>
+    <field name="model">referal.form</field>
+    <field name="arch" type="xml">
+        <tree create="false">
+            <field name="company_name"/>
+            <!-- <field name="company_industy"/>
+            <field name="project_name"/>
+            <field name="project_description"/>
+            <field name="first_name"/> -->
+        </tree>
+    </field>
+</record>
