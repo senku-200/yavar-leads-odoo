@@ -1529,7 +1529,9 @@
 
             This also allows to gain some page speed scoring.
             -->
-            <span t-field="website.logo" t-options="{'widget': 'image', 'width': 95, 'height': 40}" role="img" t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/>
+            <!-- <span t-field="website.logo" t-options="{'widget': 'image', 'width': 95, 'height': 40}" role="img" t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/> -->
+
+            <img src='/product_yavar/static/src/assets/Yavar-Logo-AI-1.svg' height="30" alt='Yavar' title="Website Name" style="height:20px;"/>
         </a>
     </xpath>
 </template>
