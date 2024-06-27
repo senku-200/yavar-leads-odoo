@@ -16,12 +16,27 @@ _logger = logging.getLogger(__name__)
 LOGIN_SUCCESSFUL_PARAMS.add('account_created')
 
 
+# class AuthSignupHome(Home):
+
+#     @http.route()
+#     def web_login(self, *args, **kw):
+#         ensure_db()
+#         response = super().web_login(*args, **kw)
+#         response.qcontext.update(self.get_auth_signup_config())
+#         if request.session.uid:
+#             if request.httprequest.method == 'GET' and request.params.get('redirect'):
+#                 # Redirect if already logged in and redirect param is present
+#                 return request.redirect(request.params.get('redirect'))
+#             # Add message for non-internal user account without redirect if account was just created
+#             if response.location == '/web/login_successful' and kw.get('confirm_password'):
+#                 return request.redirect_query('/web/login_successful', query={'account_created': True})
+#         return response
 class AuthSignupHome(Home):
 
     @http.route()
     def web_login(self, *args, **kw):
         ensure_db()
-        response = super().web_login(*args, **kw)
+        response = super(AuthSignupHome, self).web_login(*args, **kw)
         response.qcontext.update(self.get_auth_signup_config())
         if request.session.uid:
             if request.httprequest.method == 'GET' and request.params.get('redirect'):
@@ -30,8 +45,10 @@ class AuthSignupHome(Home):
             # Add message for non-internal user account without redirect if account was just created
             if response.location == '/web/login_successful' and kw.get('confirm_password'):
                 return request.redirect_query('/web/login_successful', query={'account_created': True})
+            # Custom redirection logic
+            return request.redirect('/')
         return response
-
+    
     @http.route('/web/signup', type='http', auth='public', website=True, sitemap=False)
     def web_auth_signup(self, *args, **kw):
         qcontext = self.get_auth_signup_qcontext()

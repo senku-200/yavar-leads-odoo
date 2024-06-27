@@ -17,9 +17,7 @@
                 </header>
                 <main>
                     <article id="product-container">
-                        <section id='GenAi_grp'></section>
-                        <section id='CV_grp'></section>
-                        <section id='other'></section>
+
                     </article>
                 </main>
                 

@@ -121,14 +121,17 @@ document.addEventListener('DOMContentLoaded',()=>{
       const container_title = document.createElement('p');
       const icon_container = document.createElement('div');
 
-      container.className = 'collapseExtendContainer';
+      container.className = 'collapseExtendContainer lessMarginBottom';
       container_title.innerHTML = `${title}`; 
       icon_container.innerHTML = '<i class="fa-solid fa-angle-up"></i>';
-
+      icon_container.style.transform = 'rotate(180deg)';
       container.appendChild(container_title);
       container.appendChild(icon_container);
 
       element.appendChild(container);
+    }
+    function addClassName(element,className){
+      element.className = className;
     }
     
 
@@ -202,7 +205,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 
     Object.keys(productsAppendingList).forEach((key)=>{
-      const productsCollectionContainer = createElementFunction('div','productsCollectionContainer')
+      const productsCollectionContainer = createElementFunction('div','productsCollectionContainer collapse')
       productsAppendingList[key].forEach((productElement)=>{
         productsCollectionContainer.appendChild(productElement);
       })
@@ -278,13 +281,31 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     const copyButtons = document.querySelectorAll('.fa-copy');
     copyButtons.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        let copyTarget = event.target.getAttribute('data-copy');
-        const textToCopy = document.getElementById(copyTarget).innerText;
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          alert(`${copyTarget} Copied To Clipboard`);
+        button.addEventListener('click', async (event) => {
+            let copyTargetId = event.target.getAttribute('data-copy');
+            const textToCopy = document.getElementById(copyTargetId).innerText;
+
+            if (navigator.clipboard) {
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    alert('Text copied to clipboard');
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                }
+            } else {
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    alert('Text copied to clipboard (fallback method)');
+                } catch (err) {
+                    console.error('Fallback: Failed to copy text: ', err);
+                }
+                document.body.removeChild(textArea);
+            }
         });
-      });
     });
   }
 

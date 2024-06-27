@@ -1,7 +1,7 @@
 {
     'name':'product webpage',
     'summary':'catelog of the products done by the yavar',
-    'author':'k',
+    'author':'Yavar',
     'category':'website',
     'version':'1.0',
     'depends': ['base'],
